@@ -5,6 +5,8 @@
 Very simple backend infrastructure visualizer. Probably will be helpful for projects with many dedicated physical 
 servers on one or more Data Centers.
 
+[Demo](https://horpia.github.io/srv-tree/build/)
+
 What this tool provides:
 
 - your infrastructure as simple-structured [xml](/public/data);
