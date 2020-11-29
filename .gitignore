@@ -2,6 +2,9 @@
 /.idea
 .eslintcache
 
+# ignored because on different OS we have issues with dependencies
+package-lock.json
+
 # dependencies
 /node_modules
 /.pnp
