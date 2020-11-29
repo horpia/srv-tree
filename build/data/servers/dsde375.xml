@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
+	 name="dsde375" ip="192.168.10.1">
+	<desc>Server for prod purposes</desc>
+	<cpu>Xeon Silver 4110</cpu>
+	<ram>16GB</ram>
+	<disk>2 x 2 TB SSD</disk>
+	<os>CentOS 7</os>
+	<service type="nginx" port="80" domain="example.com"/>
+	<vm ip="192.168.10.2" name="php-vm1" local-domain="php1.example.ru">
+		<service type="php-fpm" port="9000"/>
+		<service type="redis" name="Redis single node" port="6379">
+			<desc>R/W User sessions and common info. Master only.</desc>
+		</service>
+		<service type="redis" name="Redis Cluster" port="6378">
+			<desc>Cache layer for MySQL</desc>
+		</service>
+	</vm>
+	<vm ip="192.168.10.3" name="php-vm2" local-domain="php2.example.ru">
+		<service type="php-fpm" port="9000"/>
+		<service type="mysql" name="MySQL Master" port="3306"/>
+		<service type="redis" name="Local Redis" port="6379">
+			<desc>Local Redis single instance for cron jobs</desc>
+		</service>
+	</vm>
+	<vm ip="192.168.10.4" name="db-vm1">
+		<desc>VM for secondary databases. Fault tolerance. Can be turned off at any time</desc>
+		<service type="sphinxsearch" port="9312"/>
+		<service type="elasticsearch" port="9312"/>
+		<service type="elasticsearch" port="9313"/>
+	</vm>
+</srv>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
+	 name="dsde432" ip="192.168.10.5">
+	<desc>Server for data analytics</desc>
+	<cpu>Xeon Silver 4110</cpu>
+	<ram>16GB</ram>
+	<disk>2 x 2 TB SSD</disk>
+	<os>CentOS 7</os>
+	<vm ip="192.168.10.6" name="nodejs-vm1" local-domain="node1.example.ru">
+		<service type="nodejs" port="7731" domain="a.example.com">
+			<desc>NodeJS server</desc>
+		</service>
+		<service type="cassandra" port="7000"/>
+		<service type="clickhouse" port="9000"/>
+	</vm>
+	<vm ip="192.168.10.7" name="dockers-vm">
+		<service type="mysql" name="MySQL Slave" port="3306"/>
+		<service type="docker" name="Data processing microservice"/>
+		<service type="docker" name="Jenkins" local-domain="jenkins.example.com"/>
+		<service type="docker" name="Kibana" local-domain="kibana.example.com"/>
+		<service type="docker" name="PhpMyAdmin" local-domain="pma.example.com"/>
+	</vm>
+</srv>

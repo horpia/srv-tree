@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<infra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <dc name="Data Center #1">
+		<desc>Some description about this Data Center...</desc>
+        <include src="servers/dsde375.xml"/>
+        <include src="servers/dsde432.xml"/>
+    </dc>
+	<dc name="Data Center #2">
+		<desc>Some description about this Data Center...</desc>
+        <include src="servers/backup1.xml"/>
+        <include src="servers/dsru231.xml"/>
+    </dc>
+</infra>

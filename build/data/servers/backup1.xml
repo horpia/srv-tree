@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
+	name="backup1" ip="192.168.10.1">
+	<desc>Server for prod purposes</desc>
+	<cpu>Xeon Silver 4110</cpu>
+	<ram>16GB</ram>
+	<disk>2 x 2 TB SSD</disk>
+	<os>CentOS 7</os>
+	<service type="nginx" port="80" domain="backup-example.com"/>
+	<service name="Backup Engine"/>
+	<service type="storage"/>
+</srv>

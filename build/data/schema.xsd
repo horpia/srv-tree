@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="service">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="desc" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string"/>
+			<xs:attribute name="name" type="xs:string"/>
+			<xs:attribute name="port" type="xs:positiveInteger"/>
+			<xs:attribute name="domain" type="xs:string"/>
+			<xs:attribute name="local-domain" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="include">
+		<xs:complexType>
+			<xs:attribute name="src" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="srv">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="desc" minOccurs="0"/>
+				<xs:element name="cpu" minOccurs="0"/>
+				<xs:element name="ram" minOccurs="0"/>
+				<xs:element name="disk" minOccurs="0"/>
+				<xs:element name="os" minOccurs="0"/>
+				<xs:element ref="service" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="vm" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="desc" minOccurs="0"/>
+							<xs:element ref="service" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="ip" type="xs:string" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="domain" type="xs:string"/>
+						<xs:attribute name="local-domain" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ip" type="xs:string" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="domain" type="xs:string"/>
+			<xs:attribute name="local-domain" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="infra">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="include" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="dc" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="desc" minOccurs="0"/>
+							<xs:element ref="srv" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element ref="include" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
