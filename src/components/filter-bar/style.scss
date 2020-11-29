@@ -47,6 +47,8 @@
 	&__button {
 		margin: 0 var(--indent-md);
 		cursor: pointer;
+		display: flex;
+		align-items: center;
 
 		&_dc {
 			color: var(--color-wan-line);

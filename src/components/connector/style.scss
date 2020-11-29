@@ -94,7 +94,7 @@
 	&__wan-caption {
 		position: absolute;
 		font-size: var(--font-size-caption);
-		margin-top: calc(var(--font-size-caption) * -0.8);
+		margin-top: calc(var(--font-size-caption) * -1);
 		right: 100%;
 		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
 		color: var(--color-wan-line);
@@ -124,7 +124,7 @@
 	&__lan-caption {
 		position: absolute;
 		font-size: var(--font-size-caption);
-		margin-top: calc(var(--font-size-caption) * -0.8);
+		margin-top: calc(var(--font-size-caption) * -1);
 		right: 100%;
 		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
 		color: var(--color-lan-line);
@@ -164,7 +164,7 @@
 
 	&__caption {
 		font-size: var(--font-size-caption);
-		margin-top: calc(var(--font-size-caption) * -1.5);
+		margin-top: calc(var(--font-size-caption) * -2);
 		margin-right: var(--indent-md);
 		color: var(--color-caption);
 		white-space: nowrap;
