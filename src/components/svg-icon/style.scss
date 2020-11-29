@@ -1,0 +1,24 @@
+.icon {
+	width: var(--size-icon-size);
+	height: var(--size-icon-size);
+	min-width: var(--size-icon-size);
+	--half-size: calc(var(--size-icon-size) / 2);
+
+	&_sm {
+		width: var(--half-size);
+		min-width: var(--half-size);
+		height: var(--half-size);
+	}
+
+	&_rot90 {
+		transform: rotate(90deg);
+	}
+
+	&_rot180 {
+		transform: rotate(180deg);
+	}
+
+	&_rot270 {
+		transform: rotate(270deg);
+	}
+}

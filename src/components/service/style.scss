@@ -1,0 +1,18 @@
+.service {
+	display: flex;
+	align-items: stretch;
+
+	&:last-child > .connector {
+		--v-line-height: 0%;
+	}
+
+	&__body {
+		margin-top: var(--indent-lg);
+	}
+
+	.node-label {
+		--bg-color: var(--color-service-line);
+		--bg-light-color: var(--color-service-line-light);
+		--txt-color: var(--color-service-txt);
+	}
+}

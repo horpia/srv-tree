@@ -1,0 +1,49 @@
+:root {
+	--indent-sm: 2px;
+	--indent-md: 4px;
+	--indent-lg: 8px;
+	--indent-xlg: 16px;
+
+	--font-size: 12px;
+	--font-size-caption: 10px;
+	--font-family: Tahoma, Helvetica, Arial, sans-serif;
+
+	--color-txt: #333;
+
+	--color-wan-line: #4e7bab;
+	--color-wan-line-light: #6d99c4;
+	--color-wan-txt: #fff;
+
+	--color-lan-line: #74b166;
+	--color-lan-line-light: #93cb88;
+	--color-lan-txt: #fff;
+
+	--color-vm-line: #b09b55;
+	--color-vm-line-light: #cab87a;
+	--color-vm-txt: #fff;
+
+	--color-service-line: #d2d2d2;
+	--color-service-line-light: #eaeaea;
+	--color-service-txt: #373737;
+
+	--color-item-bg: #e9e9e9;
+	--color-item-brd: #bebebe;
+
+	--color-caption: #aaa;
+	--color-info-bg: #f5efdf;
+	--color-info-bg-light: #faf6ed;
+	--color-info-brd: #e0d6c2;
+	--color-info-txt-muted: #ab9a7a;
+	--color-info-txt: #564c3e;
+
+	--color-input-bg: #fff;
+	--color-input-caption: #888;
+
+	--size-connector-point: 12px;
+	--size-connector-width: 100px;
+	--size-radius: 4px;
+	--size-line-height: 18px;
+	--size-icon-size: 20px;
+	--size-node-info-width: 300px;
+	--size-filter-bar-height: 40px;
+}

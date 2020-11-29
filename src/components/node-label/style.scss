@@ -1,0 +1,132 @@
+.node-label {
+	$this: &;
+	display: flex;
+	flex-direction: column;
+	--bg-color: var(--color-wan-line);
+	--bg-light-color: var(--color-wan-line-light);
+	--txt-color: var(--color-wan-txt);
+
+	&_show-info {
+		#{$this}__button {
+			border-bottom: none;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		#{$this}__info-button {
+			background-color: var(--color-info-bg);
+			border: 1px solid var(--color-info-brd);
+			border-bottom: none;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			color: var(--color-info-txt-muted);
+
+			&:hover {
+				background-color: var(--color-info-bg-light);
+			}
+		}
+
+		#{$this}__info {
+			display: block;;
+		}
+	}
+
+	&_empty {
+		#{$this}__button {
+			cursor: default;
+			
+			&:hover {
+				background-color: var(--bg-color);
+			}
+		}
+	}
+
+	&__buttons-group {
+		order: 1;
+		display: flex;
+		align-items: center;
+	}
+
+	&__button {
+		display: flex;
+		align-items: center;
+		width: fit-content;
+		background-color: var(--bg-color);
+		border: 1px solid var(--bg-color);
+		color: var(--txt-color);
+		border-radius: var(--size-radius) 0 0 var(--size-radius);
+		padding: var(--indent-lg);
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--bg-light-color);
+		}
+
+		.icon {
+			margin-right: var(--indent-md);
+		}
+	}
+
+	&__info-button {
+		display: flex;
+		align-items: center;
+		width: fit-content;
+		background-color: var(--bg-color);
+		border: 1px solid var(--bg-color);
+		border-left-color: var(--bg-light-color);
+		color: var(--txt-color);
+		border-radius: 0 var(--size-radius) var(--size-radius) 0;
+		padding: var(--indent-lg);
+		cursor: pointer;
+
+		&:hover {
+			background-color: var(--bg-light-color);
+		}
+	}
+
+	&__name {
+		user-select: none;
+	}
+
+	&__info {
+		order: 2;
+		display: none;
+		margin-top: -1px;
+		width: fit-content;
+		min-width: var(--size-node-info-width);
+		background-color: var(--color-info-bg);
+		color: var(--color-info-txt);
+		border: 1px solid var(--color-info-brd);
+		padding: var(--indent-lg);
+		border-bottom-left-radius: var(--size-radius);
+		border-bottom-right-radius: var(--size-radius);
+
+		&:empty {
+			& + #{$this}__buttons-group {
+				& > #{$this}__button {
+					border-radius: var(--size-radius);
+				}
+
+				& > #{$this}__info-button {
+					display: none;
+				}
+			}
+		}
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+
+		li {
+			display: block;
+			margin-right: var(--indent-xlg);
+
+			span {
+
+			}
+		}
+	}
+}

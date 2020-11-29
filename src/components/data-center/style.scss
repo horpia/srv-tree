@@ -1,0 +1,24 @@
+.data-center {
+	$this: &;
+	display: flex;
+	align-items: stretch;
+
+	&:last-child > .connector {
+		--lan-line-end-decor-display: block;
+	}
+
+	&__body {
+		margin-top: var(--indent-lg);
+	}
+
+	&__lan-label {
+		position: absolute;
+		margin: var(--indent-sm) 0 0 calc(var(--size-connector-point) / -2);
+		color: var(--color-lan-line);
+		font-size: var(--font-size-caption);
+	}
+
+	&__servers {
+		position: relative;
+	}
+}

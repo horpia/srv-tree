@@ -1,0 +1,31 @@
+.property {
+	display: flex;
+	align-items: center;
+
+	&__caption {
+		margin-right: var(--indent-sm);
+		color: var(--color-info-txt-muted);
+	}
+
+	&__value {
+		display: inline-block;
+		padding: var(--indent-sm) var(--indent-md);
+		border-radius: var(--size-radius);
+
+		&:empty::after {
+			content: "—";
+			color: var(--color-info-txt-muted);
+		}
+	}
+}
+
+.properties-group {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: var(--indent-sm);
+
+	.property {
+		margin-right: var(--indent-xlg);
+	}
+}

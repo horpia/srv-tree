@@ -1,0 +1,170 @@
+.connector {
+	$this: &;
+	position: relative;
+	margin-left: calc(var(--size-connector-point) / 2 * -1 - 1px);
+	--primary-color: var(--color-wan-line);
+	--secondary-color: var(--color-wan-line);
+	--half-point: calc(var(--size-connector-point) / 2);
+	--center-by-icon: calc((var(--size-icon-size) - var(--size-connector-point)) / 2);
+	--top-indent: calc((var(--indent-lg) * 2) + var(--center-by-icon));
+	--left-indent: calc(var(--indent-lg) + var(--center-by-icon));
+	--v-line-height: 100%;
+	--wan-line-step: calc(var(--size-connector-width) + (var(--size-connector-point) / 2) + var(--left-indent));
+	--wan-line-width: var(--wan-line-step);
+	--lan-line-width: var(--wan-line-step);
+	--lan-line-end-decor-display: none;
+
+	&_wan {
+		--primary-color: var(--color-wan-line);
+		--secondary-color: var(--color-wan-line);
+	}
+
+	&_lan {
+		--primary-color: var(--color-lan-line);
+		--secondary-color: var(--color-lan-line);
+		--lan-line-width: 0px;
+		margin-left: var(--left-indent);
+	}
+
+	&_vm {
+		--primary-color: var(--color-vm-line);
+		--secondary-color: var(--color-vm-line);
+		--wan-line-width: calc(var(--wan-line-step) * 2);
+		margin-left: var(--left-indent);
+	}
+
+	&_service {
+		--primary-color: var(--color-service-line);
+		--secondary-color: var(--color-service-line);
+		--wan-line-width: calc(var(--wan-line-step) * 3);
+		--lan-line-width: calc(var(--wan-line-step) * 2);
+		margin-left: var(--left-indent);
+	}
+
+	&_root-service {
+		--primary-color: var(--color-service-line);
+		--secondary-color: var(--color-vm-line);
+		--wan-line-width: calc(var(--wan-line-step) * 2);
+		margin-left: var(--left-indent);
+	}
+
+	&__connection {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	&__point {
+		position: relative;
+		width: var(--size-connector-point);
+		height: var(--size-connector-point);
+		margin-top: var(--top-indent);
+		border-radius: 50%;
+		background-color: var(--primary-color);
+		z-index: 2;
+	}
+
+	&__h-line {
+		position: relative;
+		margin-top: calc(var(--top-indent) + var(--half-point) - 1px);
+		border-top: 2px solid var(--primary-color);
+		width: calc(var(--size-connector-width) - var(--half-point));
+		text-align: right;
+	}
+
+	&__wan-line {
+		position: absolute;
+		margin-top: calc(var(--top-indent) + var(--half-point) - 1px);
+		margin-left: calc((var(--wan-line-width) - var(--size-connector-point)) * -1);
+		border-top: 1px dotted var(--color-wan-line);
+		width: var(--wan-line-width);
+	}
+
+	&__wan-point {
+		position: absolute;
+		width: var(--size-connector-point);
+		height: var(--size-connector-point);
+		margin-top: var(--top-indent);
+		margin-left: calc(var(--wan-line-width) * -1);
+		border-radius: 50%;
+		box-sizing: border-box;
+		border: 2px solid var(--color-wan-line);
+		z-index: 2;
+	}
+
+	&__wan-caption {
+		position: absolute;
+		font-size: var(--font-size-caption);
+		margin-top: calc(var(--font-size-caption) * -0.8);
+		right: 100%;
+		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
+		color: var(--color-wan-line);
+	}
+
+	&__lan-line {
+		position: absolute;
+		margin-top: calc(var(--top-indent) + var(--half-point) - 1px);
+		margin-left: calc((var(--lan-line-width) - var(--size-connector-point)) * -1);
+		border-top: 1px dotted var(--color-lan-line);
+		width: var(--lan-line-width);
+	}
+
+	&__lan-point {
+		position: absolute;
+		width: var(--size-connector-point);
+		height: var(--size-connector-point);
+		margin-top: var(--top-indent);
+		margin-left: calc(var(--lan-line-width) * -1);
+		border-radius: 50%;
+		box-sizing: border-box;
+		border: 2px solid var(--color-lan-line);
+		z-index: 2;
+	}
+
+	&__lan-caption {
+		position: absolute;
+		font-size: var(--font-size-caption);
+		margin-top: calc(var(--font-size-caption) * -0.8);
+		right: 100%;
+		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
+		color: var(--color-lan-line);
+	}
+
+	&__v-line {
+		position: absolute;
+		left: calc(var(--half-point) - 1px);
+		border-right: 2px solid var(--secondary-color);
+		// используем calc чтобы отменить применение scss функции max.
+		// данная калькуляция нужна, чтобы отменить рисование нижней линии
+		// путем замены значения переменной --v-line-height
+		height: calc(max(var(--top-indent), var(--v-line-height)));
+		z-index: 1;
+		
+		// декорация "заземление" для линии lan, так как она заканчивается ничем
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 5px;
+			left: -4px;
+			display: var(--lan-line-end-decor-display);
+			width: 10px;
+			border-bottom: 2px solid var(--secondary-color);
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: -6px;
+			display: var(--lan-line-end-decor-display);
+			width: 14px;
+			border-bottom: 2px solid var(--secondary-color);
+		}
+	}
+
+	&__caption {
+		font-size: var(--font-size-caption);
+		margin-top: calc(var(--font-size-caption) * -1.5);
+		margin-right: var(--indent-md);
+		color: var(--color-caption);
+	}
+}
