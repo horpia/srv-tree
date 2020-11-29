@@ -18,6 +18,13 @@
 		font-size: var(--font-size-caption);
 	}
 
+	&__wan-label {
+		position: absolute;
+		margin: 6px 0 0 -30px;
+		color: var(--color-wan-line);
+		font-size: var(--font-size-caption);
+	}
+
 	&__servers {
 		position: relative;
 	}

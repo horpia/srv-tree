@@ -98,6 +98,7 @@
 		right: 100%;
 		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
 		color: var(--color-wan-line);
+		white-space: nowrap;
 	}
 
 	&__lan-line {
@@ -166,5 +167,6 @@
 		margin-top: calc(var(--font-size-caption) * -1.5);
 		margin-right: var(--indent-md);
 		color: var(--color-caption);
+		white-space: nowrap;
 	}
 }

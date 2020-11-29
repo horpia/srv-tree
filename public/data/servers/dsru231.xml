@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
+	 name="dsru231" ip="192.168.1.100">
+	<desc>Server for prod purposes</desc>
+	<cpu>Xeon Silver 4110</cpu>
+	<ram>16GB</ram>
+	<disk>2 x 2 TB SSD</disk>
+	<os>CentOS 7</os>
+	<vm ip="192.168.1.101" name="vm1">
+		<service type="php"/>
+		<service type="rabbitmq" port="5672"/>
+		<service type="kafka" port="2181"/>
+	</vm>
+	<vm ip="192.168.1.102" name="vm2">
+		<service type="redis" port="8796"/>
+		<service type="crontab"/>
+	</vm>
+</srv>

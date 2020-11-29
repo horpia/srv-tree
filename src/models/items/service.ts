@@ -8,7 +8,7 @@ export class Service extends AbstractTreeNode {
 
 	constructor(el: Element) {
 		super(el);
-		this.type = el.getAttribute('type') || 'N/D';
+		this.type = el.getAttribute('type') || 'service';
 		this.domain = el.getAttribute('domain') || '';
 		this.localDomain = el.getAttribute('local-domain') || '';
 		this.port = parseInt(el.getAttribute('port') || '0', 10);

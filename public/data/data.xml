@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <infra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
-    <dc name="Fornex - DE">
-		<desc>
-			ЦОД в Германии. Основные сервера сайта
-		</desc>
-        <srv name="dsde321" ip="192.168.10.12" domain="pikabu.ru">
-			<cpu>Xenon 12321</cpu>
-			<disk>27TB SSD (Raid 4)</disk>
-			<service type="redis" port="8976"/>
-            <vm ip="192.168.10.1" name="php-vm1">
-				<service type="php-fpm" port="3000"/>
-			</vm>
-            <vm ip="192.168.10.2" name="php-vm2" domain="pikabu.ru">
-				<service type="nginx" port="80" domain="pikabu.ru"/>
-				<service type="php-fpm" port="3000"/>
-				<service type="mysql" port="3234" local-domain="adm.staff.pikabu.ru"/>
-				<service type="cassandra" port="1234"/>
-				<service type="rabbitmq" port="1234"/>
-				<service type="sphinx" port="1234"/>
-				<service type="elasticsearch" port="1234"/>
-				<service type="clickhouse" port="1234"/>
-				<service type="docker"/>
-				<service type="nodejs"/>
-				<service type="kafka"/>
-			</vm>
-        </srv>
-		<srv name="dsde31" ip="192.168.10.12" domain="pikabu.ru">
-		</srv>
+    <dc name="Data Center #1">
+		<desc>Some description about this Data Center...</desc>
+        <include src="servers/dsde375.xml"/>
+        <include src="servers/dsde432.xml"/>
+    </dc>
+	<dc name="Data Center #2">
+		<desc>Some description about this Data Center...</desc>
+        <include src="servers/backup1.xml"/>
+        <include src="servers/dsru231.xml"/>
     </dc>
 </infra>

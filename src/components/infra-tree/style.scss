@@ -17,5 +17,6 @@
 		width: 100%;
 		margin: 0 auto;
 		max-width: calc((var(--size-connector-width) + var(--indent-lg)) * 6);
+		margin-bottom: var(--indent-xlg);
 	}
 }

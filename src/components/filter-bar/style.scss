@@ -30,7 +30,8 @@
 		border-radius: var(--size-radius);
 		padding: var(--indent-md) var(--indent-lg);
 		outline: none;
-		width: calc(min((var(--size-connector-width) + var(--indent-lg)) * 3, 50%));
+		max-width: 50%;
+		width: calc((var(--size-connector-width) + var(--indent-lg)) * 3);
 
 		&:not(:placeholder-shown) {
 			& + #{$this}__button_cancel {

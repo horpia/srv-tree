@@ -5,11 +5,17 @@
 			<xs:sequence>
 				<xs:element name="desc" minOccurs="0"/>
 			</xs:sequence>
-			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="xs:string"/>
 			<xs:attribute name="name" type="xs:string"/>
 			<xs:attribute name="port" type="xs:positiveInteger"/>
 			<xs:attribute name="domain" type="xs:string"/>
 			<xs:attribute name="local-domain" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="include">
+		<xs:complexType>
+			<xs:attribute name="src" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
 
@@ -45,11 +51,13 @@
 	<xs:element name="infra">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="dc" maxOccurs="unbounded">
+				<xs:element ref="include" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="dc" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="desc" minOccurs="0"/>
-							<xs:element ref="srv" maxOccurs="unbounded"/>
+							<xs:element ref="srv" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element ref="include" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:sequence>
 						<xs:attribute name="name" type="xs:string" use="required"/>
 					</xs:complexType>

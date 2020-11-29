@@ -35,6 +35,7 @@ export function DataCenterView(props: {model: DataCenter}): JSX.Element | null {
 	return (
 		<TreeNode searchText={props.model.toSearchString()} className="data-center">
 			<ConnectorView type={ConnectionType.WAN}/>
+			<div className="data-center__wan-label">WAN</div>
 			<div className="data-center__body">
 				<NodeLabel icon={'data-center'} name={props.model.name} isEmpty={isEmpty} isOpen={isOpen}
 				           setOpenState={setOpenState}>
