@@ -9,8 +9,8 @@ What this tool provides:
 
 - your infrastructure as simple-structured [xml](/public/data);
 - four node types: Data Center, Server, Virtual Machine, Service;
-- optional global (WAN) and local (LAN) domain/ip of tree nodes;
-- optional description and configuration (cpu, ram, os, port etc) for nodes;
+- node global (WAN) and local (LAN) domain/ip indicator;
+- node description and configuration (cpu, ram, os, port etc);
 - predefined icons for most popular services like MySQL, Nginx, Redis and so on;
 - search nodes by input text;
 - collapse nodes to the specified nesting level.
