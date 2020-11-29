@@ -1,6 +1,6 @@
 # Servers Infrastructure Tree
 
-[![GitHub Release](https://img.shields.io/github/release/tterb/PlayMusic.svg?style=flat)]()  
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/horpia/srv-tree)]()  
 
 Very simple backend infrastructure visualizer. Probably will be helpful for projects with many dedicated physical 
 servers on one or more Data Centers.
