@@ -1,6 +1,6 @@
 # Servers Infrastructure Tree
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/horpia/srv-tree)]()  
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/horpia/srv-tree.svg?style=flat)]()  
 
 Very simple backend infrastructure visualizer. Probably will be helpful for projects with many dedicated physical 
 servers on one or more Data Centers.
@@ -8,7 +8,7 @@ servers on one or more Data Centers.
 What this tool provides:
 
 - your infrastructure as simple-structured [xml](/public/data);
-- three type of nodes: Data Center, Server, Virtual Machine, Service;
+- four node types: Data Center, Server, Virtual Machine, Service;
 - optional global (WAN) and local (LAN) domain/ip of tree nodes;
 - optional description and configuration (cpu, ram, os, port etc) for nodes;
 - predefined icons for most popular services like MySQL, Nginx, Redis and so on;
