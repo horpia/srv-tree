@@ -30,7 +30,7 @@ export function ConnectorView(props: ConnectorViewType): JSX.Element {
 					<>
 						<div className="connector__wan-point"/>
 						<div className="connector__wan-line">
-							<div className="connector__wan-caption">{props.domain}</div>
+							<div className="connector__wan-caption">{splitByComma(props.domain)}</div>
 						</div>
 					</>
 					: null
@@ -40,7 +40,7 @@ export function ConnectorView(props: ConnectorViewType): JSX.Element {
 					<>
 						<div className="connector__lan-point"/>
 						<div className="connector__lan-line">
-							<div className="connector__lan-caption">{props.localDomain}</div>
+							<div className="connector__lan-caption">{splitByComma(props.localDomain)}</div>
 						</div>
 					</>
 					: null
@@ -48,4 +48,8 @@ export function ConnectorView(props: ConnectorViewType): JSX.Element {
 			</div>
 		</div>
 	);
+}
+
+function splitByComma(str: string): React.ReactNode {
+	return str.split(',').map((v: string, i: number) => <div key={i.toString()}>{v}</div>);
 }

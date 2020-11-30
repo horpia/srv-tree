@@ -23,3 +23,14 @@ What this tool provides:
 ## How to use
 
 Just copy `build` folder to any location on your web-server and edit `build/data.xml` file in any modern IDE.
+
+## Predefined icons
+
+Below is a list of service types that have predefined icon. 
+These types you can specify in `<service type="..." />` node in tree structure XML.
+
+php, php-fpm, nginx, redis, mysql, cassandra,
+rabbitmq, sphinxsearch, elasticsearch, clickhouse,
+docker, nodejs, kafka, cron, crontab, storage,
+postgresql, mariadb, oracle, mongodb, apache, mssql,
+db2

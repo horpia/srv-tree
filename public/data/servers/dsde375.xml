@@ -6,7 +6,7 @@
 	<ram>16GB</ram>
 	<disk>2 x 2 TB SSD</disk>
 	<os>CentOS 7</os>
-	<service type="nginx" port="80" domain="example.com"/>
+	<service type="nginx" port="80" domain="example.com,example1.com,example2.com"/>
 	<vm ip="192.168.10.2" name="php-vm1" local-domain="php1.example.ru">
 		<service type="php-fpm" port="9000"/>
 		<service type="redis" name="Redis single node" port="6379">
@@ -14,10 +14,11 @@
 		</service>
 		<service type="redis" name="Redis Cluster" port="6378">
 			<desc>Cache layer for MySQL</desc>
-		</service>
+		</service>>
 	</vm>
 	<vm ip="192.168.10.3" name="php-vm2" local-domain="php2.example.ru">
 		<service type="php-fpm" port="9000"/>
+		<service type="apache" port="8080"/>
 		<service type="mysql" name="MySQL Master" port="3306"/>
 		<service type="redis" name="Local Redis" port="6379">
 			<desc>Local Redis single instance for cron jobs</desc>
@@ -27,6 +28,11 @@
 		<desc>VM for secondary databases. Fault tolerance. Can be turned off at any time</desc>
 		<service type="sphinxsearch" port="9312"/>
 		<service type="elasticsearch" port="9312"/>
-		<service type="elasticsearch" port="9313"/>
+		<service type="postgresql" port="5432"/>
+		<service type="mariadb" port="3306"/>
+		<service type="oracle" port="1521"/>
+		<service type="mongodb" port="27017"/>
+		<service type="mssql" port="1433"/>
+		<service type="db2" port="50000"/>
 	</vm>
 </srv>
