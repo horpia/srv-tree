@@ -99,6 +99,7 @@
 		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
 		color: var(--color-wan-line);
 		white-space: nowrap;
+		text-align: right;
 	}
 
 	&__lan-line {
@@ -128,6 +129,8 @@
 		right: 100%;
 		margin-right: calc(var(--indent-lg) + var(--size-connector-point));
 		color: var(--color-lan-line);
+		text-align: right;
+		white-space: nowrap;
 	}
 
 	&__v-line {
