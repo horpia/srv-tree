@@ -10,6 +10,7 @@
 		<service type="php"/>
 		<service type="rabbitmq" port="5672"/>
 		<service type="kafka" port="2181"/>
+		<service type="graylog" domain="graylog.example.com"/>
 	</vm>
 	<vm ip="192.168.1.102" name="vm2">
 		<service type="redis" port="8796"/>

@@ -16,8 +16,10 @@
 	<vm ip="192.168.10.7" name="dockers-vm">
 		<service type="mysql" name="MySQL Slave" port="3306"/>
 		<service type="docker" name="Data processing microservice"/>
-		<service type="docker" name="Jenkins" local-domain="jenkins.example.com"/>
-		<service type="docker" name="Kibana" local-domain="kibana.example.com"/>
+		<service type="consul" port="8500"/>
+		<service type="jenkins" name="Jenkins" local-domain="jenkins.example.com"/>
+		<service type="kibana" name="Kibana" local-domain="kibana.example.com"/>
+		<service type="zabbix" local-domain="zabbix.example.com"/>
 		<service type="docker" name="PhpMyAdmin" local-domain="pma.example.com"/>
 	</vm>
 </srv>

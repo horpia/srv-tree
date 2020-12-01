@@ -12,6 +12,7 @@
 		<service type="redis" name="Redis single node" port="6379">
 			<desc>R/W User sessions and common info. Master only.</desc>
 		</service>
+		<service type="ansible"/>
 		<service type="redis" name="Redis Cluster" port="6378">
 			<desc>Cache layer for MySQL</desc>
 		</service>>

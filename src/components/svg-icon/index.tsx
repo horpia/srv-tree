@@ -14,7 +14,7 @@ const supportedIcons: string[] = [
 	'rabbitmq', 'sphinxsearch', 'elasticsearch', 'clickhouse',
 	'docker', 'nodejs', 'kafka', 'cron', 'crontab', 'storage',
 	'postgresql', 'mariadb', 'oracle', 'mongodb', 'apache', 'mssql',
-	'db2'
+	'db2', 'jenkins', 'consul', 'kibana', 'zabbix', 'ansible', 'graylog'
 ];
 
 
