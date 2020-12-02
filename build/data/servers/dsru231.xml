@@ -16,4 +16,10 @@
 		<service type="redis" port="8796"/>
 		<service type="crontab"/>
 	</vm>
+	<vm ip="192.168.1.103" name="vm3">
+		<service type="java" name="Service" local-domain="app1.example.com"/>
+		<service type="python" name="App 1"/>
+		<service type="ruby" name="App 2"/>
+		<service type="perl" name="App 3"/>
+	</vm>
 </srv>

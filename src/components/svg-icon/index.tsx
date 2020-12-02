@@ -3,6 +3,7 @@ import elasticSearchIcon from "./elasticsearch.svg";
 import apacheIcon from "./apache.svg";
 import mssqlIcon from "./mssql.svg";
 import db2Icon from "./db2.svg";
+import rubyIcon from "./ruby.svg";
 import "./style.scss";
 
 const supportedIcons: string[] = [
@@ -15,7 +16,7 @@ const supportedIcons: string[] = [
 	'docker', 'nodejs', 'kafka', 'cron', 'crontab', 'storage',
 	'postgresql', 'mariadb', 'oracle', 'mongodb', 'apache', 'mssql',
 	'db2', 'jenkins', 'consul', 'kibana', 'zabbix', 'ansible', 'graylog',
-	'vault'
+	'vault', 'java', 'python', 'ruby', 'perl'
 ];
 
 
@@ -24,6 +25,7 @@ const imgFiles: Record<string, string> = {
 	'apache': apacheIcon,
 	'mssql': mssqlIcon,
 	'db2': db2Icon,
+	'ruby': rubyIcon,
 };
 
 export function SvgIcon(props: {name: string, className?: string}): JSX.Element {
