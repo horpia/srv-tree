@@ -33,4 +33,5 @@ php, php-fpm, nginx, redis, mysql, cassandra,
 rabbitmq, sphinxsearch, elasticsearch, clickhouse,
 docker, nodejs, kafka, cron, crontab, storage,
 postgresql, mariadb, oracle, mongodb, apache, mssql,
-db2, jenkins, consul, kibana, zabbix, ansible, graylog
+db2, jenkins, consul, kibana, zabbix, ansible, graylog, 
+vault
