@@ -33,7 +33,6 @@
 		</service>
 		<service type="mysql" name="PhpMyAdmin">
 			<local-addr>pma.example.com</local-addr>
-			<local-addr>pma.example.com</local-addr>
 		</service>
 	</vm>
 </srv>

@@ -15,9 +15,6 @@
 	</service>
 	<vm name="php-vm1">
 		<ip>192.168.10.1</ip>
-		<ip>192.168.10.1</ip>
-		<ip>192.168.10.1</ip>
-		<ip>192.168.10.1</ip>
 		<local-addr>php1.example.com</local-addr>
 		<service type="php-fpm" port="9000"/>
 		<service type="redis" name="Redis single node" port="6379">
@@ -41,13 +38,18 @@
 	<vm name="db-vm1">
 		<ip>192.168.10.4</ip>
 		<desc>VM for secondary databases. Fault tolerance. Can be turned off at any time</desc>
-		<service type="sphinxsearch" port="9312"/>
-		<service type="elasticsearch" port="9312"/>
+		<service type="sphinxsearch" port="9312">
+			<desc>Old storage for searching by user comments and feedbacks</desc>
+		</service>
+		<service type="elasticsearch" port="9312">
+			<desc>Indices by user comments and feedbacks</desc>
+		</service>
 		<service type="postgresql" port="5432"/>
-		<service type="mariadb" port="3306"/>
-		<service type="oracle" port="1521"/>
-		<service type="mongodb" port="27017"/>
-		<service type="mssql" port="1433"/>
-		<service type="db2" port="50000"/>
+		<service type="mariadb" port="3306">
+			<desc>User comments and feedbacks</desc>
+		</service>
+		<service type="oracle" port="1521">
+			<desc>User meta data, billing system, audit info</desc>
+		</service>
 	</vm>
 </srv>
