@@ -1,9 +1,12 @@
 .vm {
+	$this: &;
 	display: flex;
 	align-items: stretch;
 
-	&:last-child > .connector {
-		--v-line-height: 0%;
+	&:last-child {
+		& > .connector {
+			--v-line-height: 0%;
+		}
 	}
 
 	&__body {
@@ -12,6 +15,7 @@
 
 	.node-label {
 		--bg-color: var(--color-vm-line);
+		--bg-next-color: var(--color-service-line);
 		--bg-light-color: var(--color-vm-line-light);
 		--txt-color: var(--color-vm-txt);
 	}

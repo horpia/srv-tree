@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
-	 name="dsde432" ip="192.168.10.5">
+	 name="dsde432">
+	<ip>192.168.10.5</ip>
 	<desc>Server for data analytics</desc>
 	<cpu>Xeon Silver 4110</cpu>
 	<ram>16GB</ram>
 	<disk>2 x 2 TB SSD</disk>
 	<os>CentOS 7</os>
-	<vm ip="192.168.10.6" name="nodejs-vm1" local-domain="node1.example.ru">
-		<service type="nodejs" port="7731" domain="a.example.com">
+	<vm name="nodejs-vm1">
+		<ip>192.168.10.6</ip>
+		<local-addr>node1.example.ru</local-addr>
+		<service type="nodejs" port="7731">
+			<global-addr>a.example.com</global-addr>
 			<desc>NodeJS server</desc>
 		</service>
 		<service type="cassandra" port="7000"/>
 		<service type="clickhouse" port="9000"/>
 	</vm>
-	<vm ip="192.168.10.7" name="dockers-vm">
+	<vm name="dockers-vm">
+		<ip>192.168.10.7</ip>
 		<service type="mysql" name="MySQL Slave" port="3306"/>
 		<service type="docker" name="Data processing microservice"/>
 		<service type="consul" port="8500"/>
-		<service type="jenkins" name="Jenkins" local-domain="jenkins.example.com"/>
-		<service type="kibana" name="Kibana" local-domain="kibana.example.com"/>
-		<service type="zabbix" local-domain="zabbix.example.com"/>
-		<service type="docker" name="PhpMyAdmin" local-domain="pma.example.com"/>
+		<service type="jenkins" name="Jenkins">
+			<local-addr>jenkins.example.com</local-addr>
+		</service>
+		<service type="kibana" name="Kibana">
+			<local-addr>kibana.example.com</local-addr>
+		</service>
+		<service type="zabbix">
+			<local-addr>zabbix.example.com</local-addr>
+		</service>
+		<service type="mysql" name="PhpMyAdmin">
+			<local-addr>pma.example.com</local-addr>
+			<local-addr>pma.example.com</local-addr>
+		</service>
 	</vm>
 </srv>

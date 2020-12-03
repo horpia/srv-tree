@@ -12,8 +12,9 @@ export enum ConnectionType {
 type ConnectorViewType = {
 	type: ConnectionType,
 	caption?: string,
-	domain?: string,
-	localDomain?: string
+	ip?: string[],
+	localAddr?: string[],
+	globalAddr?: string[]
 }
 
 export function ConnectorView(props: ConnectorViewType): JSX.Element {
@@ -23,24 +24,24 @@ export function ConnectorView(props: ConnectorViewType): JSX.Element {
 			<div className="connector__connection">
 				<div className="connector__point"/>
 				<div className="connector__h-line">
-					<div className="connector__caption">{props.caption || ''}</div>
+					<div className="connector__caption">{props.caption || wrapArray(props.ip || [])}</div>
 				</div>
-				{props.domain
+				{props.globalAddr && props.globalAddr.length > 0
 					?
 					<>
 						<div className="connector__wan-point"/>
 						<div className="connector__wan-line">
-							<div className="connector__wan-caption">{splitByComma(props.domain)}</div>
+							<div className="connector__wan-caption">{wrapArray(props.globalAddr || [])}</div>
 						</div>
 					</>
 					: null
 				}
-				{props.localDomain
+				{props.localAddr && props.localAddr.length > 0
 					?
 					<>
 						<div className="connector__lan-point"/>
 						<div className="connector__lan-line">
-							<div className="connector__lan-caption">{splitByComma(props.localDomain)}</div>
+							<div className="connector__lan-caption">{wrapArray(props.localAddr || [])}</div>
 						</div>
 					</>
 					: null
@@ -50,6 +51,6 @@ export function ConnectorView(props: ConnectorViewType): JSX.Element {
 	);
 }
 
-function splitByComma(str: string): React.ReactNode {
-	return str.split(',').map((v: string, i: number) => <div key={i.toString()}>{v}</div>);
+function wrapArray(lines: string[]): React.ReactNode {
+	return lines.map((v: string, i: number) => <div key={i.toString()}>{v}</div>);
 }

@@ -11,7 +11,7 @@ What this tool provides:
 
 - your infrastructure as simple-structured [xml](/public/data);
 - four node types: Data Center, Server, Virtual Machine, Service;
-- node global (WAN) and local (LAN) domain/ip indicator;
+- node global (WAN) and local (LAN) domain/ip indicators;
 - node description and configuration (cpu, ram, os, port etc);
 - predefined icons for most popular services like MySQL, Nginx, Redis and so on;
 - search nodes by input text;
@@ -27,7 +27,7 @@ Just copy `build` folder to any location on your web-server and edit `build/data
 ## Predefined icons
 
 Below is a list of service types that have predefined icon. 
-These types you can specify in `<service type="..." />` node in tree structure XML.
+These types you can specify in service node: `<service type="..." />`.
 
 php, nginx, redis, mysql, cassandra,
 rabbitmq, sphinxsearch, elasticsearch, clickhouse,

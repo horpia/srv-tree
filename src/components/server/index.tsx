@@ -39,14 +39,19 @@ export function ServerView(props: {model: Server}): JSX.Element | null {
 	});
 
 	const isEmpty: boolean = services.length === 0 && vms.length === 0;
+	const maxLines: number = Math.max(
+		props.model.ip?.length || 0,
+		props.model.globalAddr?.length || 0,
+		props.model.localAddr?.length || 0
+	);
 
 	return (
 		<TreeNode searchText={props.model.toSearchString()} className="server">
-			<ConnectorView type={ConnectionType.LAN} caption={props.model.ip} domain={props.model.domain}
-			               localDomain={props.model.localDomain}/>
+			<ConnectorView type={ConnectionType.LAN} ip={props.model.ip} globalAddr={props.model.globalAddr}
+			               localAddr={props.model.localAddr}/>
 			<div className="server__body">
 				<NodeLabel icon={'server'} name={props.model.name} isEmpty={isEmpty} isOpen={isOpen}
-				           setOpenState={setOpenState}>
+				           setOpenState={setOpenState} maxLines={maxLines}>
 					<PropertiesGroup>
 						<Property caption={'CPU'} value={props.model.cpu}/>
 						<Property caption={'RAM'} value={props.model.ram}/>

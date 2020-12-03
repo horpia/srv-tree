@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
-	 name="dsru231" ip="192.168.1.100">
+	 name="dsru231">
+	<ip>192.168.1.100</ip>
 	<desc>Server for prod purposes</desc>
 	<cpu>Xeon Silver 4110</cpu>
 	<ram>16GB</ram>
 	<disk>2 x 2 TB SSD</disk>
 	<os>CentOS 7</os>
-	<vm ip="192.168.1.101" name="vm1">
+	<vm name="vm1">
+		<ip>192.168.1.101</ip>
 		<service type="php"/>
 		<service type="rabbitmq" port="5672"/>
 		<service type="kafka" port="2181"/>
-		<service type="graylog" domain="graylog.example.com"/>
+		<service type="graylog">
+			<global-addr>graylog.example.com</global-addr>
+		</service>
 	</vm>
-	<vm ip="192.168.1.102" name="vm2">
+	<vm name="vm2">
+		<ip>192.168.1.102</ip>
 		<service type="redis" port="8796"/>
 		<service type="crontab"/>
 	</vm>
-	<vm ip="192.168.1.103" name="vm3">
-		<service type="java" name="Service" local-domain="app1.example.com"/>
+	<vm name="vm3">
+		<ip>192.168.1.103</ip>
+		<service type="java" name="Service">
+			<local-addr>app1.example.com</local-addr>
+		</service>
 		<service type="python" name="App 1"/>
 		<service type="ruby" name="App 2"/>
 		<service type="perl" name="App 3"/>

@@ -9,7 +9,7 @@ import {TreeNode} from "../infra-tree-node";
 
 export function VirtualMachineView(props: {model: VirtualMachine}): JSX.Element | null {
 	const [isOpen, setOpenState] = useState(true);
-	const context:FilterContextType = useContext(FilterContext);
+	const context: FilterContextType = useContext(FilterContext);
 
 	if (context.collapseTo === FilterContextCollapseToType.VIRTUAL_MACHINE && isOpen) {
 		setOpenState(false);
@@ -27,13 +27,19 @@ export function VirtualMachineView(props: {model: VirtualMachine}): JSX.Element 
 
 	const isEmpty: boolean = services.length === 0;
 
+	const maxLines: number = Math.max(
+		props.model.ip?.length || 0,
+		props.model.globalAddr?.length || 0,
+		props.model.localAddr?.length || 0
+	);
+
 	return (
 		<TreeNode searchText={props.model.toSearchString()} className="vm">
-			<ConnectorView type={ConnectionType.VM} caption={props.model.ip} domain={props.model.domain}
-			               localDomain={props.model.localDomain}/>
+			<ConnectorView type={ConnectionType.VM} ip={props.model.ip} globalAddr={props.model.globalAddr}
+			               localAddr={props.model.localAddr}/>
 			<div className="vm__body">
 				<NodeLabel icon={'vm'} name={props.model.name} isEmpty={isEmpty} isOpen={isOpen}
-				           setOpenState={setOpenState}>{props.model.desc}</NodeLabel>
+				           setOpenState={setOpenState} maxLines={maxLines}>{props.model.desc}</NodeLabel>
 				<div className="vm__services" hidden={!isOpen}>
 					{services}
 				</div>

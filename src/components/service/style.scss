@@ -1,9 +1,12 @@
 .service {
+	$this: &;
 	display: flex;
 	align-items: stretch;
 
-	&:last-child > .connector {
-		--v-line-height: 0%;
+	&:last-child {
+		& > .connector {
+			--v-line-height: 0%;
+		}
 	}
 
 	&__body {
@@ -12,6 +15,7 @@
 
 	.node-label {
 		--bg-color: var(--color-service-line);
+		--bg-next-color: var(--color-service-line);
 		--bg-light-color: var(--color-service-line-light);
 		--txt-color: var(--color-service-txt);
 	}

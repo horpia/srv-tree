@@ -2,16 +2,16 @@ import {Service} from "./service";
 import {AbstractTreeNode} from "./abstract-tree-node";
 
 export class VirtualMachine extends AbstractTreeNode {
-	readonly ip: string;
-	readonly domain: string;
-	readonly localDomain: string;
+	readonly ip: string[] = [];
+	readonly globalAddr: string[] = [];
+	readonly localAddr: string[] = [];
 	readonly services: Service[];
 
 	constructor(el: Element) {
 		super(el);
-		this.ip = el.getAttribute('ip') || 'N/D';
-		this.domain = el.getAttribute('domain') || '';
-		this.localDomain = el.getAttribute('local-domain') || '';
+		this.ip = this.getElementsTextBySelector(':scope > ip');
+		this.globalAddr = this.getElementsTextBySelector(':scope > global-addr');
+		this.localAddr = this.getElementsTextBySelector(':scope > local-addr');
 		this.services = [];
 
 		el.querySelectorAll(':scope > service').forEach(el => {
@@ -20,9 +20,9 @@ export class VirtualMachine extends AbstractTreeNode {
 	}
 
 	protected getTextToSearch(): string {
-		return this.ip
-			+ ' ' + this.domain
-			+ ' ' + this.localDomain
+		return this.ip.join(',')
+			+ ' ' + this.localAddr.join(',')
+			+ ' ' + this.globalAddr.join(',')
 			+ ' ' + this.services.map(vm => vm.toSearchString()).join(' ');
 	}
 }

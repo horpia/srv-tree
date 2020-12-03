@@ -1,9 +1,12 @@
 .server {
+	$this: &;
 	display: flex;
 	align-items: stretch;
 
-	&:last-child > .connector {
-		--lan-line-end-decor-display: block;
+	&:last-child {
+		& > .connector {
+			--lan-line-end-decor-display: block;
+		}
 	}
 
 	&__body {
@@ -12,6 +15,7 @@
 
 	.node-label {
 		--bg-color: var(--color-lan-line);
+		--bg-next-color: var(--color-vm-line);
 		--bg-light-color: var(--color-lan-line-light);
 		--txt-color: var(--color-lan-txt);
 	}

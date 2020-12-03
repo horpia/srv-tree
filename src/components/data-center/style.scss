@@ -3,8 +3,10 @@
 	display: flex;
 	align-items: stretch;
 
-	&:last-child > .connector {
-		--lan-line-end-decor-display: block;
+	&:last-child {
+		& > .connector {
+			--lan-line-end-decor-display: block;
+		}
 	}
 
 	&__body {

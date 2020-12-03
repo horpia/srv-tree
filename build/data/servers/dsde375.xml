@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
-	 name="dsde375" ip="192.168.10.1">
+	 name="dsde375">
+	<ip>192.168.10.1</ip>
 	<desc>Server for prod purposes</desc>
 	<cpu>Xeon Silver 4110</cpu>
 	<ram>16GB</ram>
 	<disk>2 x 2 TB SSD</disk>
 	<os>CentOS 7</os>
-	<service type="nginx" port="80" domain="example.com,example1.com,example2.com"/>
-	<vm ip="192.168.10.2" name="php-vm1" local-domain="php1.example.ru">
+	<service type="nginx" port="80">
+		<global-addr>example.com</global-addr>
+		<global-addr>foo.com</global-addr>
+		<global-addr>bar.com</global-addr>
+		<global-addr>car.com</global-addr>
+	</service>
+	<vm name="php-vm1">
+		<ip>192.168.10.1</ip>
+		<ip>192.168.10.1</ip>
+		<ip>192.168.10.1</ip>
+		<ip>192.168.10.1</ip>
+		<local-addr>php1.example.com</local-addr>
 		<service type="php-fpm" port="9000"/>
 		<service type="redis" name="Redis single node" port="6379">
 			<desc>R/W User sessions and common info. Master only.</desc>
@@ -15,9 +26,11 @@
 		<service type="ansible"/>
 		<service type="redis" name="Redis Cluster" port="6378">
 			<desc>Cache layer for MySQL</desc>
-		</service>>
+		</service>
 	</vm>
-	<vm ip="192.168.10.3" name="php-vm2" local-domain="php2.example.ru">
+	<vm name="php-vm2">
+		<ip>192.168.10.3</ip>
+		<local-addr>php2.example.com</local-addr>
 		<service type="php-fpm" port="9000"/>
 		<service type="apache" port="8080"/>
 		<service type="mysql" name="MySQL Master" port="3306"/>
@@ -25,7 +38,8 @@
 			<desc>Local Redis single instance for cron jobs</desc>
 		</service>
 	</vm>
-	<vm ip="192.168.10.4" name="db-vm1">
+	<vm name="db-vm1">
+		<ip>192.168.10.4</ip>
 		<desc>VM for secondary databases. Fault tolerance. Can be turned off at any time</desc>
 		<service type="sphinxsearch" port="9312"/>
 		<service type="elasticsearch" port="9312"/>

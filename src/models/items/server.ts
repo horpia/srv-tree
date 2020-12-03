@@ -3,23 +3,21 @@ import {Service} from "./service";
 import {AbstractTreeNode} from "./abstract-tree-node";
 
 export class Server extends AbstractTreeNode {
-	readonly ip: string;
-	readonly domain: string;
-	readonly localDomain: string;
+	readonly ip: string[] = [];
+	readonly globalAddr: string[] = [];
+	readonly localAddr: string[] = [];
 	readonly cpu: string;
 	readonly ram: string;
 	readonly disk: string;
 	readonly os: string;
-	readonly vms: VirtualMachine[];
-	readonly services: Service[];
+	readonly vms: VirtualMachine[] = [];
+	readonly services: Service[] = [];
 
 	constructor(el: Element) {
 		super(el);
-		this.ip = el.getAttribute('ip') || '';
-		this.domain = el.getAttribute('domain') || '';
-		this.localDomain = el.getAttribute('local-domain') || '';
-		this.vms = [];
-		this.services = [];
+		this.ip = this.getElementsTextBySelector(':scope > ip');
+		this.globalAddr = this.getElementsTextBySelector(':scope > global-addr');
+		this.localAddr = this.getElementsTextBySelector(':scope > local-addr');
 
 		this.cpu = el.querySelector(':scope > cpu')?.textContent || '';
 		this.ram = el.querySelector(':scope > ram')?.textContent || '';
@@ -36,9 +34,9 @@ export class Server extends AbstractTreeNode {
 	}
 
 	protected getTextToSearch(): string {
-		return this.ip
-			+ ' ' + this.domain
-			+ ' ' + this.localDomain
+		return this.ip.join(',')
+			+ ' ' + this.localAddr.join(',')
+			+ ' ' + this.globalAddr.join(',')
 			+ ' ' + this.cpu
 			+ ' ' + this.os
 			+ ' ' + this.vms.map(vm => vm.toSearchString()).join(' ')

@@ -10,7 +10,8 @@ export type NodeLabelType = {
 	isEmpty: boolean,
 	isOpen?: boolean,
 	setOpenState?: (el: any) => any,
-	children?: React.ReactNode
+	children?: React.ReactNode,
+	maxLines?: number
 }
 
 export function NodeLabel(props: NodeLabelType): JSX.Element {
@@ -40,7 +41,7 @@ export function NodeLabel(props: NodeLabelType): JSX.Element {
 	};
 
 	return (
-		<div className={classes.join(' ')}>
+		<div className={classes.join(' ')} style={{'--lines': props.maxLines || 0} as React.CSSProperties}>
 			<div className="node-label__info">{props.children}</div>
 			<div className="node-label__buttons-group">
 				<div className="node-label__button"
@@ -53,6 +54,7 @@ export function NodeLabel(props: NodeLabelType): JSX.Element {
 					<SvgIcon name="info"/>
 				</div>
 			</div>
+			<div className="node-label__v-line"/>
 		</div>
 	);
 }

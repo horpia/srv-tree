@@ -1,10 +1,14 @@
 .node-label {
 	$this: &;
 	display: flex;
+	align-items: flex-start;
 	flex-direction: column;
 	--bg-color: var(--color-wan-line);
+	--bg-next-color: var(--color-lan-line);
 	--bg-light-color: var(--color-wan-line-light);
 	--txt-color: var(--color-wan-txt);
+	min-height: calc(var(--size-line-height) * var(--lines, 1));
+	position: relative;
 
 	&_show-info {
 		#{$this}__button {
@@ -34,11 +38,28 @@
 	&_empty {
 		#{$this}__button {
 			cursor: default;
-			
+
 			&:hover {
 				background-color: var(--bg-color);
 			}
 		}
+
+		#{$this}__v-line {
+			display: none;
+		}
+	}
+
+	&__v-line {
+		order: 3;
+		margin-left: calc(var(--indent-lg)
+			+ ((var(--size-icon-size) - var(--size-connector-point)) / 2)
+			+ (var(--size-connector-point) / 2) - 1px);
+		border-right: 2px solid var(--bg-next-color);
+		// используем calc чтобы отменить применение scss функции max.
+		// данная калькуляция нужна, чтобы отменить рисование нижней линии
+		// путем замены значения переменной --v-line-height
+		height: calc(var(--size-line-height) * (var(--lines, 1) - 1));
+		z-index: 1;
 	}
 
 	&__buttons-group {
