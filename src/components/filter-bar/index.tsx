@@ -93,7 +93,7 @@ function search(text: string): void {
 		if (label) {
 			label.classList.add('node-label_matched');
 			if (!firstMatched) {
-				firstMatched = el;
+				firstMatched = label;
 			}
 			matched++;
 		}
