@@ -107,7 +107,8 @@ function search(text: string): void {
 	});
 
 	if (firstMatched) {
-		(firstMatched as HTMLElement).scrollIntoView({block: "center", behavior: "smooth"});
+		(firstMatched as HTMLElement).querySelector('.node-label__buttons-group')
+			?.scrollIntoView({block: "center", behavior: "smooth"});
 	}
 
 	updateStat(matched);

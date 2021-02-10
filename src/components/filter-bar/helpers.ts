@@ -13,7 +13,8 @@ export function jumpToPrevNode(): void {
 	});
 
 	if (bestEl) {
-		(bestEl as HTMLElement).scrollIntoView({behavior: "smooth", block: "center"});
+		(bestEl as HTMLElement).querySelector('.node-label__buttons-group')
+			?.scrollIntoView({behavior: "smooth", block: "center"});
 	}
 }
 
@@ -32,7 +33,8 @@ export function jumpToNextNode(): void {
 	});
 
 	if (bestEl) {
-		(bestEl as HTMLElement).scrollIntoView({behavior: "smooth", block: "center"});
+		(bestEl as HTMLElement).querySelector('.node-label__buttons-group')
+			?.scrollIntoView({behavior: "smooth", block: "center"});
 	}
 }
 
