@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "./static/css/main.ec6736b1.chunk.css",
+    "main.js": "./static/js/main.e7d508e4.chunk.js",
+    "main.js.map": "./static/js/main.e7d508e4.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.c45da0c0.js",
+    "runtime-main.js.map": "./static/js/runtime-main.c45da0c0.js.map",
+    "static/js/2.b27e1f09.chunk.js": "./static/js/2.b27e1f09.chunk.js",
+    "static/js/2.b27e1f09.chunk.js.map": "./static/js/2.b27e1f09.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.ec6736b1.chunk.css.map": "./static/css/main.ec6736b1.chunk.css.map",
+    "static/js/2.b27e1f09.chunk.js.LICENSE.txt": "./static/js/2.b27e1f09.chunk.js.LICENSE.txt",
+    "static/media/apache.ec3db90d.svg": "./static/media/apache.ec3db90d.svg",
+    "static/media/db2.3d472d1d.svg": "./static/media/db2.3d472d1d.svg",
+    "static/media/elasticsearch.81e26c95.svg": "./static/media/elasticsearch.81e26c95.svg",
+    "static/media/icons.f9e07b6a.svg": "./static/media/icons.f9e07b6a.svg",
+    "static/media/mssql.cfe2c656.svg": "./static/media/mssql.cfe2c656.svg",
+    "static/media/ruby.320ed468.svg": "./static/media/ruby.320ed468.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c45da0c0.js",
+    "static/js/2.b27e1f09.chunk.js",
+    "static/css/main.ec6736b1.chunk.css",
+    "static/js/main.e7d508e4.chunk.js"
+  ]
+}
