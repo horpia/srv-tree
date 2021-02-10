@@ -1,12 +1,12 @@
 import "./style.scss";
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {SvgIcon} from "../svg-icon";
 import {ArrowButton} from "../arrow-button";
-import {FilterContext, FilterContextCollapseToType, FilterContextType} from "../filter-bar/context";
 
 export type NodeLabelType = {
 	icon: string,
 	name: string,
+	setOpenBySearchState?: (flag: any) => any,
 	isEmpty: boolean,
 	isOpen?: boolean,
 	setOpenState?: (el: any) => any,
@@ -14,8 +14,7 @@ export type NodeLabelType = {
 	maxLines?: number
 }
 
-export function NodeLabel(props: NodeLabelType): JSX.Element {
-	const context: FilterContextType = useContext(FilterContext);
+export function NodeLabel(props: NodeLabelType): JSX.Element | null {
 	const [showInfo, setShowInfo] = useState(false);
 	let classes: string[] = ['node-label'];
 
@@ -30,11 +29,6 @@ export function NodeLabel(props: NodeLabelType): JSX.Element {
 	const toggleState: () => void = () => {
 		if (!props.setOpenState) {
 			return;
-		}
-
-		if (context.collapseTo !== FilterContextCollapseToType.NONE) {
-			// сбрасываем ранее установленый флаг сворачиявания дерева до определенного уровня нод
-			context.setCollapseTo(FilterContextCollapseToType.NONE);
 		}
 
 		props.setOpenState(!props.isOpen);

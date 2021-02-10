@@ -1,71 +1,106 @@
 import "./style.scss";
 import {SvgIcon} from "../svg-icon";
-import {FilterContext, FilterContextCollapseToType, FilterContextType} from "./context";
-import {useContext} from "react";
 
-export function FilterBar(props: {setHiddenNodesCount: (v: number) => void}): JSX.Element {
-	const context: FilterContextType = useContext(FilterContext);
+const TREE_NODES_ORDER: string[] = ['data-center', 'server', 'vm', 'service'];
+
+export function FilterBar(): JSX.Element {
 	let inputEl: HTMLInputElement;
 	return (
 		<div className="filter-bar">
 			<label className="filter-bar__caption" htmlFor="search-input">Search: </label>
 			<input ref={el => inputEl = el as HTMLInputElement} className="filter-bar__search" id="search-input"
 			       type="text"
+			       autoFocus={true}
 			       autoComplete={'off'}
-			       onKeyUp={(event) =>
-				       props.setHiddenNodesCount(filterNodesByText(inputEl.value))
-			       }
+			       onKeyUp={(event) => search(inputEl.value)}
 			       placeholder="Name, ip, port etc..."/>
 			<div className="filter-bar__button filter-bar__button_cancel"
-			     onClick={() => props.setHiddenNodesCount(filterNodesByText(inputEl.value = ''))}>
+			     onClick={() => search(inputEl.value = '')}>
 				<SvgIcon name="cancel"/>
 			</div>
 			<label className="filter-bar__caption">Collapse to: </label>
-			<div className="filter-bar__button filter-bar__button_dc" onClick={() => {
-				context.setCollapseTo(FilterContextCollapseToType.DATA_CENTER);
-			}}>
+			<div className="filter-bar__button filter-bar__button_dc" onClick={() => collapse('data-center')}>
 				<SvgIcon name="data-center"/>
 			</div>
-			<div className="filter-bar__button filter-bar__button_srv" onClick={() => {
-				context.setCollapseTo(FilterContextCollapseToType.SERVER);
-			}}>
+			<div className="filter-bar__button filter-bar__button_srv" onClick={() => collapse('server')}>
 				<SvgIcon name="server"/>
 			</div>
-			<div className="filter-bar__button filter-bar__button_vm" onClick={() => {
-				context.setCollapseTo(FilterContextCollapseToType.VIRTUAL_MACHINE);
-			}}>
+			<div className="filter-bar__button filter-bar__button_vm" onClick={() => collapse('vm')}>
 				<SvgIcon name="vm"/>
 			</div>
-			<div className="filter-bar__button filter-bar__button_service" onClick={() => {
-				context.setCollapseTo(FilterContextCollapseToType.SERVICE);
-			}}>
+			<div className="filter-bar__button filter-bar__button_service" onClick={() => collapse('service')}>
 				<SvgIcon name="service"/>
 			</div>
 		</div>
 	);
 }
 
-function filterNodesByText(search: string): number {
-	search = search.replace(/["'[\]]/g, '').toLowerCase();
-	const allEls: NodeListOf<Element> = document.querySelectorAll(`.infra-tree-node`);
-
-	if (search === '') {
-		allEls.forEach(el => {
-			(el as HTMLElement).hidden = false;
-		});
-		return 0;
-	}
-
-	let hiddenNodes: number = 0;
-	allEls.forEach((el) => {
-		const htmlEl: HTMLElement = el as HTMLElement;
-		const text: string = htmlEl.dataset.search as string;
-		htmlEl.hidden = !text.includes(search);
-
-		if (htmlEl.hidden) {
-			hiddenNodes++;
+function collapse(type: string): void {
+	document.querySelectorAll(`.${type}`).forEach(el => {
+		const ownContent: HTMLElement | null = el.querySelector(`:scope > .${type}__body > .${type}__content`);
+		if (ownContent) {
+			ownContent.hidden = true;
 		}
 	});
 
-	return hiddenNodes;
+	for (let i: number = TREE_NODES_ORDER.indexOf(type) - 1; i >= 0; i--) {
+		const type: string = TREE_NODES_ORDER[i];
+		document.querySelectorAll<HTMLElement>(`.${type}__content`).forEach((el: HTMLElement) => {
+			el.hidden = false;
+		});
+	}
+}
+
+function search(text: string): void {
+	text = text.replace(/["'[\]]/g, '').toLowerCase();
+
+	document.querySelectorAll('.node-label_matched').forEach(el => {
+		el.classList.remove('node-label_matched');
+	});
+
+	if (text === '') {
+		updateStat();
+		return;
+	}
+
+	let matched: number = 0;
+	let firstMatched: HTMLElement | null = null;
+
+	document.querySelectorAll<HTMLElement>(`.infra-tree-node[data-search*="${text}"]`).forEach((el: HTMLElement) => {
+		const label: HTMLElement | null = el.querySelector(`:scope .node-label`);
+		if (label) {
+			label.classList.add('node-label_matched');
+			if (!firstMatched) {
+				firstMatched = el;
+			}
+			matched++;
+		}
+
+		for (const type of TREE_NODES_ORDER) {
+			const parent: HTMLElement | null = el.closest<HTMLElement>(`.${type}__content`);
+			if (parent) {
+				parent.hidden = false;
+			}
+		}
+	});
+
+	if (firstMatched) {
+		(firstMatched as HTMLElement).scrollIntoView({block: "center", behavior: "smooth"});
+	}
+
+	updateStat(matched);
+}
+
+function updateStat(matchedCount: number = -1): void {
+	const statEl: HTMLElement | null = document.querySelector('.infra-tree__search-stat');
+	if (!statEl) {
+		return;
+	}
+
+	statEl.hidden = matchedCount < 0;
+
+	const counter: HTMLElement | null = statEl.querySelector('span');
+	if (counter) {
+		counter.textContent = String(matchedCount);
+	}
 }

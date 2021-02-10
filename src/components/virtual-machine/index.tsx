@@ -1,23 +1,14 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import "./style.scss";
 import {VirtualMachine} from "../../models/items/virtual-machine";
 import {ServiceView} from "../service";
 import {ConnectionType, ConnectorView} from "../connector";
 import {NodeLabel} from "../node-label";
-import {FilterContext, FilterContextCollapseToType, FilterContextType} from "../filter-bar/context";
 import {TreeNode} from "../infra-tree-node";
+import {PropertiesGroup, Property} from "../property";
 
 export function VirtualMachineView(props: {model: VirtualMachine}): JSX.Element | null {
 	const [isOpen, setOpenState] = useState(true);
-	const context: FilterContextType = useContext(FilterContext);
-
-	if (context.collapseTo === FilterContextCollapseToType.VIRTUAL_MACHINE && isOpen) {
-		setOpenState(false);
-		return null;
-	} else if (context.collapseTo === FilterContextCollapseToType.SERVICE && !isOpen) {
-		setOpenState(true);
-		return null;
-	}
 
 	const services: JSX.Element[] = props.model.services.map(service => {
 		return (
@@ -34,13 +25,21 @@ export function VirtualMachineView(props: {model: VirtualMachine}): JSX.Element 
 	);
 
 	return (
-		<TreeNode searchText={props.model.toSearchString()} className="vm">
+		<TreeNode className="vm" searchText={props.model.toSelfSearchString()}>
 			<ConnectorView type={ConnectionType.VM} ip={props.model.ip} globalAddr={props.model.globalAddr}
 			               localAddr={props.model.localAddr}/>
 			<div className="vm__body">
 				<NodeLabel icon={'vm'} name={props.model.name} isEmpty={isEmpty} isOpen={isOpen}
-				           setOpenState={setOpenState} maxLines={maxLines}>{props.model.desc}</NodeLabel>
-				<div className="vm__services" hidden={!isOpen}>
+				           setOpenState={setOpenState} maxLines={maxLines}>
+					<PropertiesGroup>
+						<Property caption={'CPU'} value={props.model.cpu}/>
+						<Property caption={'RAM'} value={props.model.ram}/>
+						<Property caption={'Disk'} value={props.model.disk}/>
+						<Property caption={'OS'} value={props.model.os}/>
+					</PropertiesGroup>
+					{props.model.desc}
+				</NodeLabel>
+				<div className="vm__content" hidden={!isOpen}>
 					{services}
 				</div>
 			</div>

@@ -33,13 +33,16 @@ export class Server extends AbstractTreeNode {
 		});
 	}
 
-	protected getTextToSearch(): string {
+	protected getSelfTextToSearch(): string {
 		return this.ip.join(',')
 			+ ' ' + this.localAddr.join(',')
 			+ ' ' + this.globalAddr.join(',')
 			+ ' ' + this.cpu
-			+ ' ' + this.os
-			+ ' ' + this.vms.map(vm => vm.toSearchString()).join(' ')
+			+ ' ' + this.os;
+	}
+
+	protected getNestedTextToSearch(): string {
+		return this.vms.map(vm => vm.toSearchString()).join(' ')
 			+ ' ' + this.services.map(vm => vm.toSearchString()).join(' ');
 	}
 }

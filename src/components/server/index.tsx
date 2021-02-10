@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import "./style.scss";
 import {Server} from "../../models/items/server";
 import {VirtualMachineView} from "../virtual-machine";
@@ -6,25 +6,10 @@ import {ServiceView} from "../service";
 import {ConnectionType, ConnectorView} from "../connector";
 import {NodeLabel} from "../node-label";
 import {PropertiesGroup, Property} from "../property";
-import {FilterContext, FilterContextCollapseToType, FilterContextType} from "../filter-bar/context";
 import {TreeNode} from "../infra-tree-node";
 
 export function ServerView(props: {model: Server}): JSX.Element | null {
 	const [isOpen, setOpenState] = useState(true);
-	const context: FilterContextType = useContext(FilterContext);
-
-	if (context.collapseTo === FilterContextCollapseToType.SERVER) {
-		if (isOpen) {
-			setOpenState(false);
-			return null;
-		}
-	} else if (
-		[FilterContextCollapseToType.VIRTUAL_MACHINE, FilterContextCollapseToType.SERVICE].includes(context.collapseTo)
-		&& !isOpen
-	) {
-		setOpenState(true);
-		return null;
-	}
 
 	const vms: JSX.Element[] = props.model.vms.map(vm => {
 		return (
@@ -46,7 +31,7 @@ export function ServerView(props: {model: Server}): JSX.Element | null {
 	);
 
 	return (
-		<TreeNode searchText={props.model.toSearchString()} className="server">
+		<TreeNode className="server" searchText={props.model.toSelfSearchString()}>
 			<ConnectorView type={ConnectionType.LAN} ip={props.model.ip} globalAddr={props.model.globalAddr}
 			               localAddr={props.model.localAddr}/>
 			<div className="server__body">

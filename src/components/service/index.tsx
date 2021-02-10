@@ -5,7 +5,7 @@ import {ConnectionType, ConnectorView} from "../connector";
 import {NodeLabel} from "../node-label";
 import {TreeNode} from "../infra-tree-node";
 
-export function ServiceView(props: {model: Service, isRoot?: boolean}): JSX.Element {
+export function ServiceView(props: {model: Service, isRoot?: boolean}): JSX.Element | null {
 	const type = props.isRoot ? ConnectionType.ROOT_SERVICE : ConnectionType.SERVICE;
 
 	const maxLines: number = Math.max(
@@ -14,7 +14,7 @@ export function ServiceView(props: {model: Service, isRoot?: boolean}): JSX.Elem
 	);
 
 	return (
-		<TreeNode searchText={props.model.toSearchString()} className="service">
+		<TreeNode className="service" searchText={props.model.toSelfSearchString()}>
 			<ConnectorView type={type} caption={props.model.port > 0 ? ':' + props.model.port : ''}
 			               globalAddr={props.model.globalAddr}
 			               localAddr={props.model.localAddr}/>

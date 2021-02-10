@@ -15,10 +15,14 @@ export class Service extends AbstractTreeNode {
 		this.localAddr = this.getElementsTextBySelector(':scope > local-addr');
 	}
 
-	protected getTextToSearch(): string {
+	protected getSelfTextToSearch(): string {
 		return this.type
 			+ ' ' + this.localAddr.join(',')
 			+ ' ' + this.globalAddr.join(',')
 			+ ' ' + this.port;
+	}
+
+	protected getNestedTextToSearch(): string {
+		return '';
 	}
 }

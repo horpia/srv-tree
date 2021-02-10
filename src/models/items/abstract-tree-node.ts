@@ -6,7 +6,8 @@ export abstract class AbstractTreeNode {
 
 	private static sequence: number = 0;
 	private readonly id: string;
-	private searchStringCache: string = '';
+	private selfSearchStringCache: string = '';
+	private nestedSearchStringCache: string = '';
 
 	protected constructor(el: Element) {
 		this.el = el;
@@ -15,7 +16,11 @@ export abstract class AbstractTreeNode {
 		this.id = new.target.name + ':' + this.name + '@' + (++AbstractTreeNode.sequence);
 	}
 
-	protected abstract getTextToSearch(): string;
+	protected abstract getNestedTextToSearch(): string;
+
+	protected getSelfTextToSearch(): string {
+		return this.name + ' ' + this.desc;
+	}
 
 	protected getElementsTextBySelector(selector: string): string[] {
 		const list: string[] = [];
@@ -26,13 +31,13 @@ export abstract class AbstractTreeNode {
 		return list;
 	}
 
-	toSearchString(): string {
-		if (this.searchStringCache !== '') {
-			return this.searchStringCache;
+	toSelfSearchString(): string {
+		if (this.selfSearchStringCache !== '') {
+			return this.selfSearchStringCache;
 		}
 
-		this.searchStringCache = this.name + ' ' + this.desc + ' ' + this.getTextToSearch();
-		this.searchStringCache = this.searchStringCache.toLowerCase().split(' ')
+		this.selfSearchStringCache = this.name + ' ' + this.desc + ' ' + this.getSelfTextToSearch();
+		this.selfSearchStringCache = this.selfSearchStringCache.toLowerCase().split(' ')
 			.filter((v: string, i: number, arr: string[]) => {
 				return i === arr.indexOf(v);
 			})
@@ -40,7 +45,28 @@ export abstract class AbstractTreeNode {
 			.replace(/\s+/g, ' ')
 			.trimEnd();
 
-		return this.searchStringCache;
+		return this.selfSearchStringCache;
+	}
+
+	toNestedSearchString(): string {
+		if (this.nestedSearchStringCache !== '') {
+			return this.nestedSearchStringCache;
+		}
+
+		this.nestedSearchStringCache = this.getNestedTextToSearch();
+		this.nestedSearchStringCache = this.nestedSearchStringCache.toLowerCase().split(' ')
+			.filter((v: string, i: number, arr: string[]) => {
+				return i === arr.indexOf(v);
+			})
+			.join(' ')
+			.replace(/\s+/g, ' ')
+			.trimEnd();
+
+		return this.nestedSearchStringCache;
+	}
+
+	toSearchString(): string {
+		return this.toSelfSearchString() + ' ' + this.toNestedSearchString();
 	}
 
 	toString(): string {

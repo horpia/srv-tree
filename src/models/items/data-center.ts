@@ -13,7 +13,7 @@ export class DataCenter extends AbstractTreeNode {
 		});
 	}
 
-	protected getTextToSearch(): string {
+	protected getNestedTextToSearch(): string {
 		return this.servers.map(srv => srv.toSearchString()).join(' ');
 	}
 }

@@ -10,6 +10,34 @@
 	min-height: calc(var(--size-line-height) * var(--lines, 1));
 	position: relative;
 
+	&_matched {
+		& > #{$this}__buttons-group {
+			outline: 3px dashed var(--color-highlight-search-3);
+		}
+
+		:root:root & {
+			opacity: 1;
+			filter: none;
+		}
+
+		&::before {
+			content: "";
+			z-index: -1;
+			width: 100vw;
+			margin-left: -100vw;
+			position: absolute;
+			margin-top: 1px;
+			height: calc(var(--size-line-height) * 2);
+			background: repeating-linear-gradient(
+				45deg,
+				var(--color-highlight-search-1),
+				var(--color-highlight-search-1) 10px,
+				var(--color-highlight-search-2) 10px,
+				var(--color-highlight-search-2) 20px
+			),;
+		}
+	}
+
 	&_show-info {
 		#{$this}__button {
 			border-bottom: none;
