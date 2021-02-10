@@ -1,5 +1,6 @@
 import "./style.scss";
 import {SvgIcon} from "../svg-icon";
+import {jumpToNextNode, jumpToPrevNode} from "../filter-bar/helpers";
 
 const TREE_NODES_ORDER: string[] = ['data-center', 'server', 'vm', 'service'];
 
@@ -12,7 +13,7 @@ export function FilterBar(): JSX.Element {
 			       type="text"
 			       autoFocus={true}
 			       autoComplete={'off'}
-			       onKeyUp={(event) => search(inputEl.value)}
+			       onKeyUp={(event) => handleKeyUp(event, inputEl)}
 			       placeholder="Name, ip, port etc..."/>
 			<div className="filter-bar__button filter-bar__button_cancel"
 			     onClick={() => search(inputEl.value = '')}>
@@ -49,6 +50,27 @@ function collapse(type: string): void {
 			el.hidden = false;
 		});
 	}
+}
+
+function handleKeyUp(event: any, inputEl: HTMLInputElement): void {
+	const keyEvent: KeyboardEvent = event as KeyboardEvent;
+	if (keyEvent.code === 'Escape') {
+		inputEl.value = '';
+		search('');
+		return;
+	}
+
+	if (keyEvent.code === 'ArrowUp') {
+		jumpToPrevNode();
+		return;
+	}
+
+	if (keyEvent.code === 'ArrowDown') {
+		jumpToNextNode();
+		return;
+	}
+
+	search(inputEl.value);
 }
 
 function search(text: string): void {
