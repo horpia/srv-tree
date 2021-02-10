@@ -19,8 +19,7 @@ export function jumpToPrevNode(): void {
 
 export function jumpToNextNode(): void {
 	const pageHeight = window.innerHeight || document.documentElement.clientHeight;
-	const scrollY: number = document.documentElement.scrollTop;
-	const baseY: number = scrollY + (pageHeight >> 1) + (pageHeight >> 2);
+	const baseY: number = (pageHeight >> 1) + (pageHeight >> 2);
 	let minDist: number = Number.MAX_VALUE, bestEl: HTMLElement | null = null;
 
 	document.querySelectorAll<HTMLElement>('.node-label_matched').forEach(el => {
@@ -33,7 +32,6 @@ export function jumpToNextNode(): void {
 	});
 
 	if (bestEl) {
-		console.log(bestEl);
 		(bestEl as HTMLElement).scrollIntoView({behavior: "smooth", block: "center"});
 	}
 }
