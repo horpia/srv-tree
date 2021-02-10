@@ -15,6 +15,10 @@
 	</service>
 	<vm name="php-vm1">
 		<ip>192.168.10.1</ip>
+		<cpu>4GHz x 5</cpu>
+		<ram>8GB</ram>
+		<disk>250GB</disk>
+		<os>CentOS 7</os>
 		<local-addr>php1.example.com</local-addr>
 		<service type="php-fpm" port="9000"/>
 		<service type="redis" name="Redis single node" port="6379">

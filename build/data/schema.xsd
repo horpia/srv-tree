@@ -40,6 +40,10 @@
 							<xs:element name="ip" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:element name="global-addr" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:element name="local-addr" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="cpu" minOccurs="0"/>
+							<xs:element name="ram" minOccurs="0"/>
+							<xs:element name="disk" minOccurs="0"/>
+							<xs:element name="os" minOccurs="0"/>
 						</xs:choice>
 						<xs:attribute name="name" type="xs:string" use="required"/>
 					</xs:complexType>
