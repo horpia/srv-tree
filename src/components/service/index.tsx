@@ -15,7 +15,7 @@ export function ServiceView(props: {model: Service, isRoot?: boolean}): JSX.Elem
 
 	return (
 		<TreeNode className="service" searchText={props.model.toSelfSearchString()}>
-			<ConnectorView type={type} caption={props.model.port > 0 ? ':' + props.model.port : ''}
+			<ConnectorView type={type} caption={props.model.ip + (props.model.port > 0 ? ':' + props.model.port : '')}
 			               globalAddr={props.model.globalAddr}
 			               localAddr={props.model.localAddr}/>
 			<div className="service__body">

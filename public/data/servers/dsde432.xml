@@ -23,6 +23,7 @@
 		<service type="docker" name="Data processing microservice"/>
 		<service type="consul" port="8500"/>
 		<service type="jenkins" name="Jenkins">
+			<ip>15.34.33.206</ip>
 			<local-addr>jenkins.example.com</local-addr>
 		</service>
 		<service type="kibana" name="Kibana">
