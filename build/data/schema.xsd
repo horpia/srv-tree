@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="desc">
+		<xs:complexType mixed="true">
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="br" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="ul" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="li" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ol" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element name="li" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
 	<xs:element name="service">
 		<xs:complexType>
 			<xs:choice maxOccurs="unbounded">
-				<xs:element name="desc" minOccurs="0"/>
+				<xs:element ref="desc" minOccurs="0"/>
 				<xs:element name="ip" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="global-addr" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="local-addr" minOccurs="0" maxOccurs="unbounded"/>
@@ -26,7 +48,7 @@
 				<xs:element name="ip" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="global-addr" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element name="local-addr" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element name="desc" minOccurs="0"/>
+				<xs:element ref="desc" minOccurs="0"/>
 				<xs:element name="cpu" minOccurs="0"/>
 				<xs:element name="ram" minOccurs="0"/>
 				<xs:element name="disk" minOccurs="0"/>
@@ -35,7 +57,7 @@
 				<xs:element name="vm" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:choice maxOccurs="unbounded">
-							<xs:element name="desc" minOccurs="0"/>
+							<xs:element ref="desc" minOccurs="0"/>
 							<xs:element ref="service" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:element name="ip" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:element name="global-addr" minOccurs="0" maxOccurs="unbounded"/>
@@ -60,7 +82,7 @@
 				<xs:element name="dc" minOccurs="0" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:choice maxOccurs="unbounded">
-							<xs:element name="desc" minOccurs="0"/>
+							<xs:element ref="desc" minOccurs="0"/>
 							<xs:element ref="srv" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:element ref="include" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:choice>
