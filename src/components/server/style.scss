@@ -13,6 +13,10 @@
 		margin-top: var(--indent-lg);
 	}
 
+	&__desc {
+		white-space: pre-wrap;
+	}
+
 	.node-label {
 		--bg-color: var(--color-lan-line);
 		--bg-next-color: var(--color-vm-line);

@@ -2,4 +2,9 @@
 	&[hidden] {
 		display: none;
 	}
+
+	ul {
+		margin-top: var(--indent-sm);
+		margin-bottom: var(--indent-sm);
+	}
 }

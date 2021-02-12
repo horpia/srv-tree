@@ -108,6 +108,10 @@
 		margin-left: calc((var(--lan-line-width) - var(--size-connector-point)) * -1);
 		border-top: 1px dotted var(--color-lan-line);
 		width: var(--lan-line-width);
+
+		#{$this}__wan-point ~ & > #{$this}__lan-caption {
+			margin-top: var(--indent-sm);
+		}
 	}
 
 	&__lan-point {

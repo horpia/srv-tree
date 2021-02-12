@@ -12,7 +12,7 @@ export abstract class AbstractTreeNode {
 	protected constructor(el: Element) {
 		this.el = el;
 		this.name = el.getAttribute('name') || '';
-		this.desc = el.querySelector(':scope > desc')?.textContent || '';
+		this.desc = el.querySelector(':scope > desc')?.innerHTML || '';
 		this.id = new.target.name + ':' + this.name + '@' + (++AbstractTreeNode.sequence);
 	}
 

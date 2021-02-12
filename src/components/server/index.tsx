@@ -43,7 +43,7 @@ export function ServerView(props: {model: Server}): JSX.Element | null {
 						<Property caption={'Disk'} value={props.model.disk}/>
 						<Property caption={'OS'} value={props.model.os}/>
 					</PropertiesGroup>
-					<div>{props.model.desc}</div>
+					<div dangerouslySetInnerHTML={{__html: props.model.desc}}/>
 				</NodeLabel>
 				<div className="server__content" hidden={!isOpen}>
 					{services}

@@ -2,7 +2,16 @@
 <srv xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema.xsd"
 	 name="dsde375">
 	<ip>192.168.10.1</ip>
-	<desc>Server for prod purposes</desc>
+	<desc>
+		KVM, nginx front<br/>
+		Test domains:
+		<ul>
+			<li>pma.example.com</li>
+			<li>kibana.example.com</li>
+			<li>jenkins.example.com</li>
+			<li>dashboard.example.com</li>
+		</ul>
+	</desc>
 	<cpu>Xeon Silver 4110</cpu>
 	<ram>16GB</ram>
 	<disk>2 x 2 TB SSD</disk>
@@ -12,6 +21,7 @@
 		<global-addr>foo.com</global-addr>
 		<global-addr>bar.com</global-addr>
 		<global-addr>car.com</global-addr>
+		<local-addr>pma.example.com</local-addr>
 	</service>
 	<vm name="php-vm1">
 		<ip>192.168.10.1</ip>
